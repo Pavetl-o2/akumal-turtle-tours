@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0}
+  body{font-family:'Barlow',sans-serif;background:#f4efe2;color:#0a3d47}
+  a{color:inherit}
+  a:hover{opacity:.75}
+  details summary{list-style:none;cursor:pointer}
+  details summary::-webkit-details-marker{display:none}
+  .wrap{max-width:1400px;margin:0 auto}
+</style>
+</helmet>
+
+<div style="background:#f4efe2;color:#0a3d47;font-family:'Barlow',sans-serif">
+
+  <!-- NAV -->
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:22px 40px">
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;letter-spacing:-.01em">🐢 Akumal Turtle Co.</div>
+    <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:7px 8px 7px 22px;box-shadow:0 2px 10px rgba(10,61,71,.08)">
+      <a href="#tours" style="text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px">Tours</a>
+      <a href="#gallery" style="text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px">Gallery</a>
+      <a href="#faq" style="text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px">FAQ</a>
+      <a href="#contact" style="text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px">Contact</a>
+      <a href="#contact" style="text-decoration:none;font-size:14px;font-weight:600;background:#046a75;color:#fff;padding:11px 22px;border-radius:999px">Book Now</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap" style="padding:8px 20px 20px" data-screen-label="Hero">
+    <div style="position:relative;height:640px;border-radius:28px;overflow:hidden;display:flex;align-items:flex-end;background:repeating-linear-gradient(45deg,rgba(255,255,255,.14) 0 16px,rgba(255,255,255,0) 16px 32px),#046a75">
+      <span style="position:absolute;top:24px;left:28px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.6);text-transform:uppercase">hero video — turtle in bay</span>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,106,117,0) 30%,rgba(4,58,64,.7) 100%)"></div>
+      <div style="position:relative;padding:52px 56px;color:#fff">
+        <div style="display:inline-block;background:#ffd24a;color:#0a3d47;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin-bottom:22px">Akumal · Riviera Maya</div>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:88px;line-height:.95;margin:0;letter-spacing:-.02em">Swim with<br>sea turtles</h1>
+        <p style="font-size:18px;max-width:480px;margin:22px 0 0;color:rgba(255,255,255,.9)">Small-group snorkeling tours in the bay the Maya named "the place of the turtles."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:24px 20px 12px">
+    <div style="background:#fff;border-radius:20px;padding:26px 28px"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;color:#046a75">10+</div><div style="font-size:14px;color:rgba(10,61,71,.65);margin-top:4px">years guiding the bay</div></div>
+    <div style="background:#fff;border-radius:20px;padding:26px 28px"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;color:#046a75">6</div><div style="font-size:14px;color:rgba(10,61,71,.65);margin-top:4px">guests max per group</div></div>
+    <div style="background:#fff;border-radius:20px;padding:26px 28px"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;color:#046a75">100%</div><div style="font-size:14px;color:rgba(10,61,71,.65);margin-top:4px">reef-safe & certified</div></div>
+  </div>
+
+  <!-- TOURS -->
+  <div class="wrap" id="tours" style="padding:44px 40px 20px" data-screen-label="Tours & Pricing">
+    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;margin:0 0 6px;letter-spacing:-.02em">Pick your tour</h3>
+    <p style="font-size:16px;color:rgba(10,61,71,.6);margin:0 0 32px">Prices per person unless noted · gear & bay fee included</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <div style="background:#fff;border-radius:24px;overflow:hidden">
+        <div style="height:210px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:rgba(10,61,71,.4);text-transform:uppercase">tour photo</span></div>
+        <div style="padding:26px 26px 30px">
+          <div style="display:inline-block;background:#ffe9b0;color:#8a5a10;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:14px">2 hrs · group</div>
+          <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:24px;margin:0 0 8px">Morning Snorkel</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:rgba(10,61,71,.68);margin:0 0 22px">Calm water, best light, full gear and reef briefing.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px">$45</span><a href="#contact" style="text-decoration:none;background:#046a75;color:#fff;font-size:13px;font-weight:600;padding:11px 22px;border-radius:999px">Book</a></div>
+        </div>
+      </div>
+      <div style="background:#0a3d47;border-radius:24px;overflow:hidden;color:#f4efe2">
+        <div style="height:210px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 12px,rgba(255,255,255,0) 12px 24px),#0d4d59"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase">tour photo</span></div>
+        <div style="padding:26px 26px 30px">
+          <div style="display:inline-block;background:#ffd24a;color:#0a3d47;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:14px">3 hrs · private ★</div>
+          <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:24px;margin:0 0 8px">Private Encounter</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:rgba(244,239,226,.72);margin:0 0 22px">Your party only, dedicated guide, photos throughout.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px">$160</span><a href="#contact" style="text-decoration:none;background:#ffd24a;color:#0a3d47;font-size:13px;font-weight:600;padding:11px 22px;border-radius:999px">Book</a></div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:24px;overflow:hidden">
+        <div style="height:210px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:rgba(10,61,71,.4);text-transform:uppercase">tour photo</span></div>
+        <div style="padding:26px 26px 30px">
+          <div style="display:inline-block;background:#ffe9b0;color:#8a5a10;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:14px">4 hrs · reef</div>
+          <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:24px;margin:0 0 8px">Reef Expedition</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:rgba(10,61,71,.68);margin:0 0 22px">Turtles, Yal-Kú reef and a coastal lunch stop.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px">$95</span><a href="#contact" style="text-decoration:none;background:#046a75;color:#fff;font-size:13px;font-weight:600;padding:11px 22px;border-radius:999px">Book</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="wrap" id="gallery" style="padding:56px 40px 20px" data-screen-label="Gallery">
+    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;margin:0 0 26px;letter-spacing:-.02em">From the water</h3>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div style="height:180px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(10,61,71,.4);text-transform:uppercase">photo</span></div>
+      <div style="height:180px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(10,61,71,.4);text-transform:uppercase">photo</span></div>
+      <div style="height:180px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(10,61,71,.4);text-transform:uppercase">photo</span></div>
+      <div style="height:180px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(4,106,117,.1) 0 12px,rgba(4,106,117,0) 12px 24px),#e6f0ef"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(10,61,71,.4);text-transform:uppercase">photo</span></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="wrap" id="faq" style="padding:56px 40px 20px" data-screen-label="FAQ">
+    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;margin:0 0 22px;letter-spacing:-.02em">Good to know</h3>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <details style="background:#fff;border-radius:16px;padding:0 24px"><summary style="display:flex;justify-content:space-between;padding:22px 0;font-size:17px;font-weight:600"><span>Do I need to know how to swim?</span><span style="color:#046a75">+</span></summary><p style="font-size:14.5px;line-height:1.7;color:rgba(10,61,71,.7);margin:0 0 22px;max-width:720px">Basic comfort helps, but every guest wears a life vest and stays with a guide. Non-swimmers welcome.</p></details>
+      <details style="background:#fff;border-radius:16px;padding:0 24px"><summary style="display:flex;justify-content:space-between;padding:22px 0;font-size:17px;font-weight:600"><span>Are turtle sightings guaranteed?</span><span style="color:#046a75">+</span></summary><p style="font-size:14.5px;line-height:1.7;color:rgba(10,61,71,.7);margin:0 0 22px;max-width:720px">Akumal Bay is a resident feeding ground, so sightings are very common year-round. We never chase or touch the turtles.</p></details>
+      <details style="background:#fff;border-radius:16px;padding:0 24px"><summary style="display:flex;justify-content:space-between;padding:22px 0;font-size:17px;font-weight:600"><span>What's included in the price?</span><span style="color:#046a75">+</span></summary><p style="font-size:14.5px;line-height:1.7;color:rgba(10,61,71,.7);margin:0 0 22px;max-width:720px">Mask, snorkel, fins, life vest, bay conservation fee and your certified guide. Bring reef-safe sunscreen.</p></details>
+      <details style="background:#fff;border-radius:16px;padding:0 24px"><summary style="display:flex;justify-content:space-between;padding:22px 0;font-size:17px;font-weight:600"><span>How do I get to Akumal?</span><span style="color:#046a75">+</span></summary><p style="font-size:14.5px;line-height:1.7;color:rgba(10,61,71,.7);margin:0 0 22px;max-width:720px">Akumal sits on the Cancún–Tulum highway, about 35 minutes south of Cancún airport. We'll send exact meeting-point details after booking.</p></details>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="wrap" style="padding:24px 20px 20px">
+    <div style="background:#046a75;border-radius:28px;color:#fff;text-align:center;padding:72px 40px">
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:52px;margin:0 0 16px;letter-spacing:-.02em">Ready to dive in?</h3>
+      <p style="font-size:17px;margin:0 auto 30px;max-width:440px;color:rgba(255,255,255,.85)">We confirm your spot within the hour. Tours run daily from 7 AM.</p>
+      <a href="#contact" style="display:inline-block;background:#ffd24a;color:#0a3d47;text-decoration:none;font-weight:700;font-size:15px;padding:16px 40px;border-radius:999px">Book your tour</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="wrap" id="contact" style="padding:40px 40px 20px" data-screen-label="Contact">
+    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;margin:0 0 26px;letter-spacing:-.02em">Contact &amp; booking</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div style="background:#fff;border-radius:24px;padding:36px">
+        <p style="font-size:15.5px;line-height:1.7;color:rgba(10,61,71,.75);margin:0 0 22px">Send us your preferred date and group size — we reply within the hour and confirm meeting point details.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <input placeholder="Full name" style="border:1px solid rgba(10,61,71,.15);border-radius:12px;padding:14px 16px;font-size:14px;font-family:inherit">
+          <input placeholder="Email or WhatsApp" style="border:1px solid rgba(10,61,71,.15);border-radius:12px;padding:14px 16px;font-size:14px;font-family:inherit">
+          <input placeholder="Preferred date & group size" style="border:1px solid rgba(10,61,71,.15);border-radius:12px;padding:14px 16px;font-size:14px;font-family:inherit">
+          <button style="margin-top:6px;background:#046a75;color:#fff;border:none;border-radius:999px;padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">Request booking</button>
+        </div>
+      </div>
+      <div style="font-size:15px;line-height:2.2;color:rgba(10,61,71,.8)">
+        <div style="font-weight:700;margin-bottom:6px">WhatsApp</div>+52 984 000 0000
+        <div style="font-weight:700;margin:18px 0 6px">Email</div>hola@akumalturtle.co
+        <div style="font-weight:700;margin:18px 0 6px">Meeting point</div>Carr. Cancún–Tulum, Akumal, Quintana Roo, Mexico
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap" style="padding:56px 40px 44px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px">
+    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;margin-bottom:12px">🐢 Akumal Turtle Co.</div><p style="font-size:14px;color:rgba(10,61,71,.6);max-width:260px;margin:0">Carr. Cancún–Tulum, Akumal, Quintana Roo, Mexico</p></div>
+    <div style="font-size:14px;line-height:2;color:rgba(10,61,71,.75)"><div style="font-weight:700;margin-bottom:8px">Explore</div><a href="#tours" style="text-decoration:none">Tours</a><br><a href="#gallery" style="text-decoration:none">Gallery</a><br><a href="#faq" style="text-decoration:none">FAQ</a><br><a href="#contact" style="text-decoration:none">Contact</a></div>
+    <div style="font-size:14px;line-height:2;color:rgba(10,61,71,.75)"><div style="font-weight:700;margin-bottom:8px">Follow</div>Instagram<br>Facebook<br>WhatsApp</div>
+  </div>
+  <div class="wrap" style="padding:0 40px 32px;font-size:12px;color:rgba(10,61,71,.5)">© 2026 Akumal Turtle Co. — All rights reserved.</div>
+
+</div>
+</x-dc>
+</body>
+</html>
