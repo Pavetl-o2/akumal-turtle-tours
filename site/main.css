@@ -81,6 +81,17 @@ a:hover { opacity: .75; }
 .pill--yellow { background: var(--yellow); color: var(--ink); }
 .pill--sand   { background: var(--sand);   color: var(--sand-ink); }
 
+/* Photos fill their tile; the tile's own height rule decides the crop, and the
+   hatched background stays visible underneath until the image decodes. */
+.tour__media img,
+.gallery__tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
 /* ---------- placeholder labels ---------- */
 
 .ph-label {

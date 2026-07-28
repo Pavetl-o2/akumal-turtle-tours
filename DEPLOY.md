@@ -44,19 +44,23 @@ Everything below is filler from the design prototype, not real business data.
 
 | What | Where |
 | --- | --- |
-| ~~Hero video~~ | done — `site/media/hero.mp4` + `hero-poster.jpg` |
-| 3 tour photos | `.tour__media` |
-| 4 gallery photos | `.gallery__tile` |
-| WhatsApp `+52 984 000 0000` | `index.html` contact block + `WHATSAPP` in `script.js` |
-| Email `hola@akumalturtle.co` | `index.html` contact block + `EMAIL` in `script.js` |
+| WhatsApp `+52 984 000 0000` | `index.html` contact block + `WHATSAPP` in `main.js` |
+| Email `hola@akumalturtle.co` | `index.html` contact block + `EMAIL` in `main.js` |
 | Prices ($45 / $160 / $95), tour copy, FAQ answers | `index.html` |
 | `https://akumalturtle.co/` canonical URL | `<link rel="canonical">` in `index.html` |
 
-Image prompts for generating the photos are at the end of `chats/chat1.md`.
+All imagery is in place. To swap a photo, overwrite the file in `site/media/`
+keeping the same name — but pre-crop it to the tile's aspect first, because
+`object-fit: cover` centre-crops whatever you give it:
 
-Remaining tiles work the same way: drop an `<img>` into `.tour__media` /
-`.gallery__tile` with `width:100%; height:100%; object-fit:cover` and delete the
-`<span class="ph-label">`.
+| Slot | File | Crop to |
+| --- | --- | --- |
+| Tour cards | `tour-morning/private/reef.jpg` | 2:1 — exported at 900×450 |
+| Gallery | `gallery-1…4.jpg` | 16:9 — exported at 800×450 |
+
+The source photos were mostly 4:3 or portrait, so each was cropped around its
+subject rather than centred — centring cut the turtle out of the Private
+Encounter shot and left nothing but water in the vertical ones.
 
 ## Hero video
 
