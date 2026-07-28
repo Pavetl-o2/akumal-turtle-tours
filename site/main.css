@@ -517,6 +517,13 @@ a:hover { opacity: .75; }
   .hero__title { font-size: 72px; }
   .section__title { font-size: 38px; }
   .cta__title { font-size: 44px; }
+
+  /* Below the design's desktop width the cards get narrow while the media
+     boxes keep their fixed height, so the tiles turn portrait and cover-crop
+     the sides off each photo. Letting them keep the aspect the photos were
+     cropped to means the full intended frame survives at every width. */
+  .tour__media { height: auto; aspect-ratio: 2 / 1; }
+  .gallery__tile { height: auto; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 880px) {
@@ -556,6 +563,19 @@ a:hover { opacity: .75; }
   .cta { padding: 56px 28px; }
   .cta__title { font-size: 36px; }
   .footer { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* iOS Safari zooms the whole page in when a focused field is under 16px and
+     never zooms back out — on the booking form that is the worst place for it. */
+  .contact__form input { font-size: 16px; }
+
+  /* Comfortable touch targets (the design's desktop sizes sit under 44px). */
+  .btn--sm { padding: 14px 26px; }
+  .nav__brand { display: inline-block; padding: 6px 0; }
+
+  /* Inline padding extends an inline link's hit area without opening up the
+     line rhythm; 6px matches the line-height so rows never overlap. */
+  .footer__col a,
+  .contact__info a { padding-block: 6px; }
 }
 
 @media (max-width: 620px) {
@@ -564,7 +584,10 @@ a:hover { opacity: .75; }
   .section__title { font-size: 32px; }
 
   .stats { grid-template-columns: 1fr; }
+  /* Two 16:9 tiles side by side on a phone are only ~90px tall; 4:3 trades a
+     modest side crop for tiles you can actually see. */
   .gallery { grid-template-columns: 1fr 1fr; }
+  .gallery__tile { aspect-ratio: 4 / 3; }
   .contact__card { padding: 26px; }
   .cta__title { font-size: 30px; }
   .cta__lede { font-size: 16px; }
