@@ -5,10 +5,24 @@ direction the user picked in `chats/chat1.md`). No build step, no framework.
 
 ```
 site/index.html    markup
-site/styles.css    all styles
-site/script.js     mobile nav, FAQ accordion, booking form
+site/main.css      all styles
+site/main.js       mobile nav, FAQ accordion, booking form
+site/media/        hero video + poster
 vercel.json        serves site/ as the output directory
 ```
+
+## Caching
+
+Everything is served `public, max-age=0, must-revalidate`, so browsers
+revalidate against the ETag on each load and a 304 costs almost nothing.
+
+Do **not** put `immutable` / long `max-age` on these filenames. They carry no
+content hash, so a browser that cached `main.css` under `immutable` will keep
+serving the stale copy for the whole max-age and never ask for a new one — which
+is exactly what happened when the hero video first went live: new HTML, year-old
+CSS, video rendering unstyled at its native 848×478. If you want long-lived
+caching later, add a content hash to the filenames first (`main.a1b2c3.css`),
+which needs a build step this site deliberately does not have.
 
 ## Deploy to Vercel
 
