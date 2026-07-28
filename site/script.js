@@ -7,6 +7,16 @@
   var WHATSAPP = '529840000000';
   var EMAIL = 'hola@akumalturtle.co';
 
+  /* ---------- hero video ---------- */
+
+  // Autoplaying footage is exactly what "reduce motion" is asking us not to do,
+  // so fall back to the poster frame.
+  var heroVideo = document.querySelector('.hero__media');
+  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
+
   /* ---------- mobile nav ---------- */
 
   var toggle = document.querySelector('.nav__toggle');

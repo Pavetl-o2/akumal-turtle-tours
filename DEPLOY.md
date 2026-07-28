@@ -30,7 +30,7 @@ Everything below is filler from the design prototype, not real business data.
 
 | What | Where |
 | --- | --- |
-| Hero video/image | `.hero__panel` — currently a striped teal block |
+| ~~Hero video~~ | done — `site/media/hero.mp4` + `hero-poster.jpg` |
 | 3 tour photos | `.tour__media` |
 | 4 gallery photos | `.gallery__tile` |
 | WhatsApp `+52 984 000 0000` | `index.html` contact block + `WHATSAPP` in `script.js` |
@@ -40,10 +40,26 @@ Everything below is filler from the design prototype, not real business data.
 
 Image prompts for generating the photos are at the end of `chats/chat1.md`.
 
-To drop in a real hero, replace the placeholder `<span>` and `.hero__panel`
-background with a `<video>`/`<img>` set to `position:absolute; inset:0;
-width:100%; height:100%; object-fit:cover` — the gradient scrim above it
-(`.hero__scrim`) already keeps the headline legible.
+Remaining tiles work the same way: drop an `<img>` into `.tour__media` /
+`.gallery__tile` with `width:100%; height:100%; object-fit:cover` and delete the
+`<span class="ph-label">`.
+
+## Hero video
+
+`site/media/hero.mp4` — 848×478, 12.3s, 2.5 MB. Source was a WhatsApp clip; the
+video stream is copied verbatim (no re-encode, no quality loss), with the audio
+track stripped and `+faststart` applied so it streams instead of waiting for a
+full download. `hero-poster.jpg` is the frame at 0.5s.
+
+`.hero__scrim` is two stacked gradients rather than the design's single one: the
+footage swings from a dark turtle to bright sunlit water, and at ~3s/9s/11s the
+white lede paragraph washed out against the original scrim. The vertical layer
+keeps the design's bottom fade; the horizontal one shades the left column where
+the copy sits. **If you swap in different footage, re-check legibility across
+the whole clip, not just the poster frame.**
+
+Also note the source is 848×478 — it fills a 1400px-wide panel, so it is soft on
+large screens. A higher-resolution capture would render noticeably sharper.
 
 ## Booking form
 
