@@ -11,6 +11,30 @@ site/media/        hero video + poster
 vercel.json        serves site/ as the output directory
 ```
 
+## Languages
+
+English, Spanish, French, Italian and German. All copy lives in `site/i18n.js`;
+the markup carries only keys, so a wording change is edited once per language in
+one file.
+
+- Text: `data-i18n="key"` — replaces the element's text.
+- Attributes: `data-i18n-attr="placeholder:key"` (comma-separate for several).
+- Markup inside a string: add the key to `HTML_KEYS` — only `hero.title` uses
+  it, for its `<br>` and the German soft hyphen.
+- JS strings: `window.__t('key')`.
+
+Language is chosen by `?lang=xx`, then a saved choice, then the browser's
+`Accept-Language`, then English. Picking one updates `?lang=` so a page can be
+shared in that language, and `<html lang>` so screen readers and hyphenation
+follow. Missing keys fall back to English rather than rendering blank.
+
+**SEO limitation.** Translation happens in the browser, so all five languages
+share one URL and search engines index mainly the English text. For a business
+that wants to rank on "tour tortugas akumal" or "schnorcheln akumal", the fix is
+a real URL per language (`/es/`, `/de/`, …) with `hreflang` tags — which means
+either five HTML files or a generator, and therefore the build step this site
+currently avoids. Worth doing once the copy stops changing.
+
 ## Caching
 
 Everything is served `public, max-age=0, must-revalidate`, so browsers

@@ -79,10 +79,12 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+    var t = window.__t || function (k) { return k; };
+
     var fields = [
-      { el: document.getElementById('f-name'), label: 'your name' },
-      { el: document.getElementById('f-contact'), label: 'an email or WhatsApp number' },
-      { el: details, label: 'a preferred date and group size' }
+      { el: document.getElementById('f-name'), label: t('form.f.name') },
+      { el: document.getElementById('f-contact'), label: t('form.f.reach') },
+      { el: details, label: t('form.f.details') }
     ];
 
     var missing = fields.filter(function (f) { return !f.el.value.trim(); });
@@ -91,26 +93,24 @@
     });
 
     if (missing.length) {
-      status.textContent = 'Please add ' + missing[0].label + '.';
+      status.textContent = t('form.need') + missing[0].label + '.';
       missing[0].el.focus();
       return;
     }
 
     var message =
-      'Hi! I\'d like to book a turtle tour.\n\n' +
-      'Name: ' + fields[0].el.value.trim() + '\n' +
-      'Contact: ' + fields[1].el.value.trim() + '\n' +
-      'Date & group size: ' + fields[2].el.value.trim();
+      t('form.greeting') + '\n\n' +
+      t('form.l.name') + ': ' + fields[0].el.value.trim() + '\n' +
+      t('form.l.contact') + ': ' + fields[1].el.value.trim() + '\n' +
+      t('form.l.details') + ': ' + fields[2].el.value.trim();
 
     var url = WHATSAPP
       ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message)
       : 'mailto:' + EMAIL +
-        '?subject=' + encodeURIComponent('Tour booking request') +
+        '?subject=' + encodeURIComponent(t('form.greeting')) +
         '&body=' + encodeURIComponent(message);
 
-    status.textContent = WHATSAPP
-      ? 'Opening WhatsApp with your request — press send to reach us.'
-      : 'Opening your email app with the request — press send to reach us.';
+    status.textContent = WHATSAPP ? t('form.wa') : t('form.mail');
     window.open(url, '_blank', 'noopener');
   });
 })();
