@@ -7,6 +7,15 @@
   var WHATSAPP = '529840000000';
   var EMAIL = 'hola@akumalturtle.co';
 
+  /* Stripe Payment Links, one per tour — create them in the Stripe dashboard
+     and paste the https://buy.stripe.com/… URLs here (see DEPLOY.md).
+     A blank link hides the pay button for that tour, so the WhatsApp request
+     keeps working on its own until the links exist. */
+  var PAYMENT_LINKS = {
+    morning: '',
+    yalkuito: ''
+  };
+
   /* ---------- hero video ---------- */
 
   // Autoplaying footage is exactly what "reduce motion" is asking us not to do,
@@ -64,11 +73,50 @@
   var tour = document.getElementById('f-tour');
   var details = document.getElementById('f-details');
 
+  /* ---------- pay button ---------- */
+
+  var payBlock = document.getElementById('pay-block');
+  var payLink = document.getElementById('pay-link');
+
+  // Stripe only accepts [A-Za-z0-9_-] here, and it is what ties the payment in
+  // the dashboard back to the WhatsApp request.
+  function reference(name) {
+    return name.trim()
+      // Strip the accents first, or "José" arrives as "Jos-".
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+  }
+
+  function syncPayButton() {
+    var url = PAYMENT_LINKS[tour.value];
+    if (!url) {
+      payBlock.hidden = true;
+      return;
+    }
+    var params = [];
+    var reach = document.getElementById('f-contact').value.trim();
+    // The field takes a WhatsApp number too, so only pass it on as an email.
+    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(reach)) {
+      params.push('prefilled_email=' + encodeURIComponent(reach));
+    }
+    var ref = reference(document.getElementById('f-name').value);
+    if (ref) params.push('client_reference_id=' + ref);
+
+    payLink.href = url + (params.length ? (url.indexOf('?') < 0 ? '?' : '&') + params.join('&') : '');
+    payBlock.hidden = false;
+  }
+
+  tour.addEventListener('change', syncPayButton);
+  document.getElementById('f-name').addEventListener('input', syncPayButton);
+  document.getElementById('f-contact').addEventListener('input', syncPayButton);
+  syncPayButton();
+
   // "Book" on a tour card preselects that tour in the dropdown.
   document.querySelectorAll('[data-tour]').forEach(function (link) {
     link.addEventListener('click', function () {
       tour.value = link.getAttribute('data-tour');
       tour.setAttribute('aria-invalid', 'false');
+      syncPayButton(); // setting .value from script fires no change event
       // Focus after the anchor jump so the form lands in view — the name field
       // rather than the select, which would pop a picker open on mobile.
       setTimeout(function () { document.getElementById('f-name').focus(); }, 400);

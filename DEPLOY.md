@@ -70,7 +70,8 @@ Everything below is filler from the design prototype, not real business data.
 | --- | --- |
 | WhatsApp `+52 984 000 0000` | `index.html` contact block + `WHATSAPP` in `main.js` |
 | Email `hola@akumalturtle.co` | `index.html` contact block + `EMAIL` in `main.js` |
-| Prices ($45 / $160 / $95), tour copy, FAQ answers | `index.html` |
+| Prices ($65 / $450), tour copy, FAQ answers | `index.html` |
+| Stripe payment links | `PAYMENT_LINKS` in `main.js` — see *Online payments* |
 | `https://akumalturtle.co/` canonical URL | `<link rel="canonical">` in `index.html` |
 
 All imagery is in place. To swap a photo, overwrite the file in `site/media/`
@@ -79,12 +80,69 @@ keeping the same name — but pre-crop it to the tile's aspect first, because
 
 | Slot | File | Crop to |
 | --- | --- | --- |
-| Tour cards | `tour-morning/private/reef.jpg` | 2:1 — exported at 900×450 |
+| Tour cards | `tour-morning.jpg`, `tour-reef.jpg` | 2:1 — exported at 900×450 |
 | Gallery | `gallery-1…4.jpg` | 16:9 — exported at 800×450 |
 
 The source photos were mostly 4:3 or portrait, so each was cropped around its
-subject rather than centred — centring cut the turtle out of the Private
-Encounter shot and left nothing but water in the vertical ones.
+subject rather than centred — centring left nothing but water in the vertical
+ones. `tour-private.jpg` is unused since the Private Encounter tour was
+removed; it is kept in case the photo is wanted elsewhere.
+
+## Online payments
+
+The site takes card payments through **Stripe Payment Links** — hosted checkout
+pages that live on Stripe's domain. Nothing but a URL is stored here: no API
+keys, no card data, no backend, and the site stays a static deploy.
+
+```js
+// site/main.js
+var PAYMENT_LINKS = {
+  morning:  '',   // https://buy.stripe.com/…
+  yalkuito: ''
+};
+```
+
+A blank link hides the pay button for that tour, so until the links are pasted
+in, the form behaves exactly as before (WhatsApp request only). Fill them in and
+a **Pay now by card** button appears under the submit button as soon as the
+guest picks that tour.
+
+The button's URL carries two parameters, so the payment can be matched back to
+the request in the Stripe dashboard:
+
+- `prefilled_email` — only when the contact field holds an email, since it also
+  accepts a WhatsApp number.
+- `client_reference_id` — the guest's name, accents stripped and reduced to
+  `[A-Za-z0-9_-]`, which is all Stripe accepts there.
+
+### Creating the two links
+
+In the Stripe dashboard, **Payment links → New**, one per tour:
+
+| | Morning Snorkel | Yalkuito |
+| --- | --- | --- |
+| Price | 65 USD | 450 USD |
+| Quantity | let the customer adjust it (1–6) — that is how a group of 4 pays 4 × $65 | fixed at 1, the price is per group |
+
+For both: add custom fields for **tour date** and **meeting point / hotel**
+(Payment Links support them, and it is the only place the date gets captured at
+payment time), enable the emailed receipt, and set the after-payment redirect
+back to the site. Link your cancellation and refund terms on the link's page —
+Stripe asks for them and Mexican consumer law expects them to be visible before
+the guest pays.
+
+### What this does *not* do
+
+Payment Links have no calendar: they will happily take two payments for the same
+morning. Keep confirming the date over WhatsApp — either before sending the link
+(safest) or right after the payment lands — and handle refunds by hand from the
+dashboard. When the volume makes that painful, the next steps up are a Stripe
+Checkout session behind a Vercel function (dynamic price per head, webhook
+confirmation) or a tour-booking platform with real availability.
+
+Two things worth checking with current figures before pricing: charging in USD
+from a Mexican Stripe account settles in MXN with a currency-conversion fee on
+top of the card fee, and international cards cost more than domestic ones.
 
 ## Hero video
 

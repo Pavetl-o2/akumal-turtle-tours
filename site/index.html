@@ -175,6 +175,14 @@
 
           <button class="contact__submit" type="submit" data-i18n="contact.submit">Request booking</button>
           <p class="contact__status" id="form-status" role="status" aria-live="polite"></p>
+
+          <!-- Stays hidden until PAYMENT_LINKS in main.js has a link for the
+               selected tour, so the form works unchanged without Stripe. -->
+          <div class="contact__pay" id="pay-block" hidden>
+            <p class="contact__or"><span data-i18n="contact.pay.or">or</span></p>
+            <a class="contact__pay-btn" id="pay-link" href="#" target="_blank" rel="noopener" data-i18n="contact.pay.btn">Pay now by card</a>
+            <p class="contact__pay-note" data-i18n="contact.pay.note">Secure card payment through Stripe. We confirm your spot by WhatsApp as soon as the payment lands.</p>
+          </div>
         </form>
       </div>
 
