@@ -50,7 +50,7 @@ a:hover { opacity: .75; }
 }
 .skip-link:focus { left: 0; }
 
-:where(a, button, summary, input):focus-visible {
+:where(a, button, summary, input, select):focus-visible {
   outline: 2px solid var(--teal);
   outline-offset: 3px;
 }
@@ -252,32 +252,6 @@ a:hover { opacity: .75; }
   color: rgba(255, 255, 255, .9);
 }
 
-/* ---------- stats ---------- */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 24px 20px 12px;
-}
-.stat {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 26px 28px;
-}
-.stat__num {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 40px;
-  color: var(--teal);
-  margin: 0;
-}
-.stat__label {
-  font-size: 14px;
-  color: rgba(10, 61, 71, .65);
-  margin: 4px 0 0;
-}
-
 /* ---------- sections ---------- */
 
 .section { padding: 56px 40px 20px; }
@@ -304,25 +278,35 @@ a:hover { opacity: .75; }
 
 .tours {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
 }
 
 .tour {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: 24px;
   overflow: hidden;
 }
 
 .tour__media {
-  height: 210px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--hatch-light), var(--mint);
 }
 
-.tour__body { padding: 26px 26px 30px; }
+.tour__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 26px 26px 30px;
+}
+
+/* As a flex item the badge would stretch across the card. */
+.tour__body .pill { align-self: flex-start; }
 
 .tour .pill { font-size: 11px; letter-spacing: .08em; padding: 6px 12px; }
 
@@ -341,21 +325,33 @@ a:hover { opacity: .75; }
 }
 
 .tour__foot {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.tour__cost { margin: 0; }
+
 .tour__price {
+  display: block;
   font-family: var(--display);
   font-weight: 800;
   font-size: 26px;
+}
+
+.tour__unit {
+  display: block;
+  font-size: 12.5px;
+  color: rgba(10, 61, 71, .6);
+  margin-top: 2px;
 }
 
 .tour--featured { background: var(--ink); color: var(--cream); }
 .tour--featured .tour__media { background: var(--hatch-dark), var(--teal-deep); }
 .tour--featured .ph-label { color: rgba(255, 255, 255, .4); }
 .tour--featured .tour__desc { color: rgba(244, 239, 226, .72); }
+.tour--featured .tour__unit { color: rgba(244, 239, 226, .62); }
 
 /* ---------- gallery ---------- */
 
@@ -455,7 +451,8 @@ a:hover { opacity: .75; }
 
 .contact__form { display: flex; flex-direction: column; gap: 14px; }
 
-.contact__form input {
+.contact__form input,
+.contact__form select {
   border: 1px solid rgba(10, 61, 71, .15);
   border-radius: 12px;
   padding: 14px 16px;
@@ -465,8 +462,23 @@ a:hover { opacity: .75; }
   background: #fff;
 }
 .contact__form input::placeholder { color: rgba(10, 61, 71, .45); }
-.contact__form input:focus { outline: 2px solid var(--teal); outline-offset: 0; border-color: transparent; }
-.contact__form input[aria-invalid="true"] { border-color: #c0522f; }
+.contact__form input:focus,
+.contact__form select:focus { outline: 2px solid var(--teal); outline-offset: 0; border-color: transparent; }
+.contact__form input[aria-invalid="true"],
+.contact__form select[aria-invalid="true"] { border-color: #c0522f; }
+
+.contact__form .contact__select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%230a3d47' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 10px 6px;
+  padding-right: 42px;
+  cursor: pointer;
+}
+/* The first option is a prompt, not an answer, so it reads like a placeholder. */
+.contact__form .contact__select:invalid { color: rgba(10, 61, 71, .45); }
 
 .contact__submit {
   margin-top: 6px;
@@ -582,9 +594,10 @@ a:hover { opacity: .75; }
 
   .section, .footer { padding-left: 24px; padding-right: 24px; }
   .footer__legal { padding-left: 24px; padding-right: 24px; }
-  .stats, .cta-wrap { padding-left: 16px; padding-right: 16px; }
+  .cta-wrap { padding-left: 16px; padding-right: 16px; }
 
   .tours { grid-template-columns: 1fr; gap: 18px; }
+  .tour__media { height: 240px; }
   .contact { grid-template-columns: 1fr; gap: 24px; }
   .cta { padding: 56px 28px; }
   .cta__title { font-size: 36px; }
@@ -592,7 +605,8 @@ a:hover { opacity: .75; }
 
   /* iOS Safari zooms the whole page in when a focused field is under 16px and
      never zooms back out — on the booking form that is the worst place for it. */
-  .contact__form input { font-size: 16px; }
+  .contact__form input,
+  .contact__form select { font-size: 16px; }
 
   /* Comfortable touch targets (the design's desktop sizes sit under 44px). */
   .btn--sm { padding: 14px 26px; }
@@ -609,7 +623,6 @@ a:hover { opacity: .75; }
   .hero__title { font-size: 44px; }
   .section__title { font-size: 32px; }
 
-  .stats { grid-template-columns: 1fr; }
   /* Two 16:9 tiles side by side on a phone are only ~90px tall; 4:3 trades a
      modest side crop for tiles you can actually see. */
   .gallery { grid-template-columns: 1fr 1fr; }

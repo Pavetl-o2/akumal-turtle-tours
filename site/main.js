@@ -61,18 +61,17 @@
 
   var form = document.getElementById('booking-form');
   var status = document.getElementById('form-status');
+  var tour = document.getElementById('f-tour');
   var details = document.getElementById('f-details');
 
-  // "Book" on a tour card pre-fills which tour the guest wants.
+  // "Book" on a tour card preselects that tour in the dropdown.
   document.querySelectorAll('[data-tour]').forEach(function (link) {
     link.addEventListener('click', function () {
-      var tour = link.getAttribute('data-tour');
-      if (!details.value.trim()) details.value = tour + ' — ';
-      // Focus after the anchor jump so the caret lands in view.
-      setTimeout(function () {
-        details.focus();
-        details.setSelectionRange(details.value.length, details.value.length);
-      }, 400);
+      tour.value = link.getAttribute('data-tour');
+      tour.setAttribute('aria-invalid', 'false');
+      // Focus after the anchor jump so the form lands in view — the name field
+      // rather than the select, which would pop a picker open on mobile.
+      setTimeout(function () { document.getElementById('f-name').focus(); }, 400);
     });
   });
 
@@ -82,9 +81,12 @@
     var t = window.__t || function (k) { return k; };
 
     var fields = [
-      { el: document.getElementById('f-name'), label: t('form.f.name') },
-      { el: document.getElementById('f-contact'), label: t('form.f.reach') },
-      { el: details, label: t('form.f.details') }
+      { el: document.getElementById('f-name'), need: t('form.f.name'), label: t('form.l.name') },
+      { el: document.getElementById('f-contact'), need: t('form.f.reach'), label: t('form.l.contact') },
+      // The select carries a code as its value; send the tour's name instead.
+      { el: tour, need: t('form.f.tour'), label: t('form.l.tour'),
+        text: tour.value ? tour.options[tour.selectedIndex].textContent : '' },
+      { el: details, need: t('form.f.details'), label: t('form.l.details') }
     ];
 
     var missing = fields.filter(function (f) { return !f.el.value.trim(); });
@@ -93,16 +95,14 @@
     });
 
     if (missing.length) {
-      status.textContent = t('form.need') + missing[0].label + '.';
+      status.textContent = t('form.need') + missing[0].need + '.';
       missing[0].el.focus();
       return;
     }
 
-    var message =
-      t('form.greeting') + '\n\n' +
-      t('form.l.name') + ': ' + fields[0].el.value.trim() + '\n' +
-      t('form.l.contact') + ': ' + fields[1].el.value.trim() + '\n' +
-      t('form.l.details') + ': ' + fields[2].el.value.trim();
+    var message = t('form.greeting') + '\n\n' + fields.map(function (f) {
+      return f.label + ': ' + (f.text || f.el.value.trim());
+    }).join('\n');
 
     var url = WHATSAPP
       ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message)
